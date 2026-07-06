@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Annotated
-from pydantic import BaseModel, EmailStr, ConfigDict, StringConstraints
+
+from pydantic import BaseModel, ConfigDict, EmailStr, StringConstraints
+
 
 class UserBase(BaseModel):
     """

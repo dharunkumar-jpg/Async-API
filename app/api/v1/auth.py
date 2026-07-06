@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, Request, status
-from app.api.dependency import get_auth_service
-from app.schemas.token import Token
 from fastapi.security import OAuth2PasswordRequestForm
+from app.api.dependency import get_auth_service
+from app.core.rate_limiter import limiter
+from app.schemas.token import Token
 from app.schemas.user import UserCreate, UserResponse
 from app.services.auth_service import AuthService
-from app.core.rate_limiter import limiter
 
 router = APIRouter(
     prefix="/auth",
@@ -30,6 +30,7 @@ async def register(
 
 
 from fastapi import APIRouter, Depends, Request, status
+
 
 @router.post(
     "/login",

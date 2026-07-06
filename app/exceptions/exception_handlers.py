@@ -1,13 +1,12 @@
-from fastapi import FastAPI
-from fastapi import Request
+from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from app.exceptions.custom_exceptions import (
-    TaskNotFoundException,
-    UserAlreadyExistsException,
-    UserNotFoundException,
-    InvalidTokenException,
-    InvalidCredentialsException
-)
+
+from app.exceptions.custom_exceptions import (InvalidCredentialsException,
+                                              InvalidTokenException,
+                                              TaskNotFoundException,
+                                              UserAlreadyExistsException,
+                                              UserNotFoundException)
+
 
 async def user_already_exists_exception_handler(
     request: Request,

@@ -1,7 +1,10 @@
 from datetime import date, datetime
 from typing import Annotated
+
 from pydantic import BaseModel, ConfigDict, StringConstraints
-from app.enums.task_status import TaskStatus, TaskPriority
+
+from app.enums.task_status import TaskPriority, TaskStatus
+
 
 class TaskBase(BaseModel):
 

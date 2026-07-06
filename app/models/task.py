@@ -1,9 +1,11 @@
 from datetime import date
+
 from sqlalchemy import Date, Enum, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from app.core.database import Base
+from app.enums.task_status import TaskPriority, TaskStatus
 from app.mixins.timestamp_mixin import TimestampMixin
-from app.enums.task_status import TaskStatus,TaskPriority
 
 
 class Task(Base, TimestampMixin):

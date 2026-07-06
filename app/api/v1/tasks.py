@@ -1,14 +1,8 @@
 from fastapi import APIRouter, Depends, status
-from app.api.dependency import (
-    get_current_user,
-    get_task_service,
-)
+
+from app.api.dependency import get_current_user, get_task_service
 from app.models.user import User
-from app.schemas.task import (
-    TaskCreate,
-    TaskResponse,
-    TaskUpdate,
-)
+from app.schemas.task import TaskCreate, TaskResponse, TaskUpdate
 from app.services.task_service import TaskService
 
 router = APIRouter(

@@ -1,6 +1,9 @@
 from collections.abc import AsyncGenerator
-from sqlalchemy.ext.asyncio import (AsyncSession,async_sessionmaker,create_async_engine,)
+
+from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
+                                    create_async_engine)
 from sqlalchemy.orm import DeclarativeBase
+
 from app.core.config import get_settings
 
 settings = get_settings()
@@ -29,4 +32,4 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
     async with AsyncSessionLocal() as session:
         yield session
 
-        # poo_pre_ping it is used to send a test query, it will let the connection to be idle
+        #async with when iit exiblock closes automatically

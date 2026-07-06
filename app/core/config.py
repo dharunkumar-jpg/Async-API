@@ -1,4 +1,6 @@
-from functools import lru_cache    #iru cache stores the caches result of function
+from functools import \
+    lru_cache  # iru cache stores the caches result of function
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

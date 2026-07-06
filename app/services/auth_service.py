@@ -1,23 +1,16 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.security import (
-    create_access_token,
-    hash_password,
-    verify_password,
-)
-from app.exceptions.custom_exceptions import (
-    InvalidCredentialsException,
-    UserAlreadyExistsException,
-    InvalidPasswordException,
-    SamePasswordException,
-)
+
+from app.core.security import (create_access_token, hash_password,
+                               verify_password)
+from app.exceptions.custom_exceptions import (InvalidCredentialsException,
+                                              InvalidPasswordException,
+                                              SamePasswordException,
+                                              UserAlreadyExistsException)
 from app.models.user import User
 from app.repositories.user_repository import UserRepository
 from app.schemas.token import Token
-from app.schemas.user import UserCreate
+from app.schemas.user import ChangePassword, UserCreate
 from app.services.base_services import BaseService
-from app.schemas.user import ChangePassword
-from app.core.security import hash_password, verify_password
-
 
 
 class AuthService(BaseService):
@@ -92,14 +85,14 @@ class AuthService(BaseService):
 
             if not verify_password(
                     password_data.current_password,
-                    user.password,
+                    user.hashed_password,
             ):
                 raise InvalidPasswordException()
 
             if password_data.current_password == password_data.new_password:
                 raise SamePasswordException()
 
-            user.password = hash_password(
+            user.hashed_password = hash_password(
                 password_data.new_password,
             )
 

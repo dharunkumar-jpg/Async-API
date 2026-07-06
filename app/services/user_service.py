@@ -1,4 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.exceptions.custom_exceptions import UserNotFoundException
 from app.models.user import User
 from app.repositories.user_repository import UserRepository
 from app.schemas.user import UserUpdate
@@ -19,7 +21,10 @@ class UserService(BaseService):
         """
         Retrieve a user by ID.
         """
-        return await self.user_repository.get_by_id(user_id)
+        user = await self.user_repository.get_by_id(user_id)
+        if user is None:
+            raise UserNotFoundException()
+        return user
 
     async def update_user(
             self,

@@ -1,10 +1,11 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.enums.task_status import TaskStatus
+from app.exceptions.custom_exceptions import TaskNotFoundException
 from app.models.task import Task
 from app.repositories.task_repository import TaskRepository
 from app.schemas.task import TaskCreate, TaskUpdate
 from app.services.base_services import BaseService
-from app.enums.task_status import TaskStatus
-from app.exceptions.custom_exceptions import TaskNotFoundException
 
 
 class TaskService(BaseService):
@@ -43,8 +44,12 @@ class TaskService(BaseService):
         """
         Retrieve a task by ID.
         """
-        return await self.task_repository.get_by_owner_and_id(task_id, owner_id)
+        task = await self.task_repository.get_by_owner_and_id(task_id,owner_id,)
 
+        if task is None:
+            raise TaskNotFoundException()
+
+        return task
     async def get_tasks_by_owner(self,owner_id: int,) -> list[Task]:
         """
         Retrieve all tasks for a user.

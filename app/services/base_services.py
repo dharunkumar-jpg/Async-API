@@ -1,5 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
+
 class BaseService:
     """
     Base service responsible for transaction management.

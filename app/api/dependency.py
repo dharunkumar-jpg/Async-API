@@ -1,19 +1,17 @@
 from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
+from pydantic import ValidationError
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.core.database import get_db
 from app.core.security import decode_access_token
-from app.exceptions.custom_exceptions import (
-    InvalidTokenException,
-    UserNotFoundException,
-)
-from app.schemas.token import TokenPayload
-from pydantic import ValidationError
+from app.exceptions.custom_exceptions import (InvalidTokenException,
+                                              UserNotFoundException)
 from app.repositories.user_repository import UserRepository
+from app.schemas.token import TokenPayload
 from app.services.auth_service import AuthService
 from app.services.task_service import TaskService
 from app.services.user_service import UserService
-
 
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="/auth/login",
