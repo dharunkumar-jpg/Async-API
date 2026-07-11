@@ -1,6 +1,6 @@
 # Task_ manager
 ✅Overview
-Task Management API is a full-featured, production-ready REST API that provides comprehensive task and project management capabilities. Built with FastAPI and PostgreSQL, it implements modern authentication, advanced filtering, and follows industry best practices for scalability and security.
+Task Management API is a full-featured, production-ready REST API that provides comprehensive task and project management capabilities. Built with FastAPI and MySQL, it implements modern authentication, advanced filtering, and follows industry best practices for scalability and security.
 
 Why This API?
 -Production-Ready: Fully tested, documented
